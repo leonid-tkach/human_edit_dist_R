@@ -26,3 +26,15 @@ str_to_tibble <- function(str) {
 str_to_tibble(hed_df$seg1[1])
 ```
 
+```{r}
+# function splitting string using this regex: "([^\d\W]+\s*|\d+\s*|[^\w\s]+\s*)" and returning array
+str_to_array <- function(str) {
+  str_extract_all(str, "[^\\d\\W]+\\s*|\\d+\\s*|[^\\w\\s]+\\s*") %>% 
+    unlist()
+}
+```
+
+```{r}
+str_to_array(hed_df$seg1[1])
+```
+
