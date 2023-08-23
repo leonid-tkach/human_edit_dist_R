@@ -1,0 +1,3 @@
+fluidPage(
+  "Hello world!"
+)
