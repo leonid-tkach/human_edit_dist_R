@@ -1,3 +1,3 @@
 fluidPage(
-  "Hello world!"
+  "Hello world!!"
 )
