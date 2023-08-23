@@ -4,6 +4,25 @@ output: html_notebook
 ---
 
 ```{r}
+library(tidyverse)
+```
 
+```{r}
+# read csv file to tibble
+hed_df <- read_csv("human-edit-dist.csv")
+hed_df
+```
+
+```{r}
+# string to tibble with a column of characters
+str_to_tibble <- function(str) {
+  str_split(str, "") %>% 
+    unlist() %>% 
+    tibble(char = .)
+}
+```
+
+```{r}
+str_to_tibble(hed_df$seg1[1])
 ```
 

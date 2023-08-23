@@ -1754,11 +1754,51 @@ display: none;
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkIGNzdiBmaWxlIHRvIHRpYmJsZVxuaGVkX2RmIDwtIHJlYWRfY3N2KFwiaHVtYW4tZWRpdC1kaXN0LmNzdlwiKVxuaGVkX2RmXG5gYGAifQ== -->
+<pre class="r"><code># read csv file to tibble
+hed_df &lt;- read_csv(&quot;human-edit-dist.csv&quot;)
+hed_df</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBzdHJfc3BsaXQoc3RyLCBcIlwiKSAlPiUgXG4gICAgdW5saXN0KCkgJT4lIFxuICAgIHRpYmJsZShjaGFyID0gLilcblxuYGBgIn0= -->
+<pre class="r"><code>  str_split(str, &quot;&quot;) %&gt;% 
+    unlist() %&gt;% 
+    tibble(char = .)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gYHN0cl9zcGxpdCgpYDpcbiEgYHN0cmluZ2AgbXVzdCBiZSBhIHZlY3Rvciwgbm90IGEgZnVuY3Rpb24uXG5CYWNrdHJhY2U6XG4gMS4gc3RyX3NwbGl0KHN0ciwgXCJcIikgJT4lIHVubGlzdCgpICU+JSB0aWJibGUoY2hhciA9IC4pXG4gNi4gc3RyaW5ncjo6c3RyX3NwbGl0KHN0ciwgXCJcIilcbiJ9 -->
+<pre><code>Error in `str_split()`:
+! `string` must be a vector, not a function.
+Backtrace:
+ 1. str_split(str, &quot;&quot;) %&gt;% unlist() %&gt;% tibble(char = .)
+ 6. stringr::str_split(str, &quot;&quot;)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MjYsIm5jb2wiOjEsInN1bW1hcnkiOnsiQSB0aWJibGUiOlsiMjYgw5cgMSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJtV1JTMDdETUJDR0p3K0RHb21IeEk0VkYwZzIzZlFBaUFNZ2tMcDFuYlJKbTlyQmNRVkxUc3N4R2liQlB3aG5ZZnZ6ZVA3eFBKNGYxOHRzblJGUlFta1NVU0lZU2J5K1BPVXJvalRtUzBRcExjYnpnNTN1SmdQUkxhOTdQR2lBQVhTQU44QURZQXZZQVdxQUJHeG1LZ1VvQVExZ0R6ak1WTlZNMVFLT3MrUi9WUmJRQTF6UUNxSGxzZXA5RzJCTVZTMXQ0TGl3NXIyQTh4V3YrSk8zWVJpK3dvaXFsWDBZTVN1bGs4WFdzcDV2NTBCeWFUclhHTTJpZUp5S0NNUmN4bi9EelVtUG1aUzVxay82a0MvSEQvdzB5V2NYVFZQOTQram55M2p3b1lRUGRWSHBYYVBSWGRIS1RZWEdYblBGVThGRlp4dnRVQWxiKzhJWkorR1hLZFBDTXRWRzUyOXg4T0ViakFJQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["char"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"n"},{"1":"o"},{"1":"p"},{"1":"q"},{"1":""},{"1":"f"},{"1":"g"},{"1":"h"},{"1":"a"},{"1":"b"},{"1":""},{"1":"c"},{"1":"d"},{"1":"i"},{"1":"j"},{"1":"k"},{"1":""},{"1":"e"},{"1":"d"},{"1":"l"},{"1":"m"},{"1":"n"},{"1":""},{"1":"r"},{"1":"s"},{"1":"t"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[26]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkhFRCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkhFRCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpgYGANCg0KYGBge3J9DQojIHJlYWQgY3N2IGZpbGUgdG8gdGliYmxlDQpoZWRfZGYgPC0gcmVhZF9jc3YoImh1bWFuLWVkaXQtZGlzdC5jc3YiKQ0KaGVkX2RmDQpgYGANCg0KYGBge3J9DQojIHN0cmluZyB0byB0aWJibGUgd2l0aCBhIGNvbHVtbiBvZiBjaGFyYWN0ZXJzDQpzdHJfdG9fdGliYmxlIDwtIGZ1bmN0aW9uKHN0cikgew0KICBzdHJfc3BsaXQoc3RyLCAiIikgJT4lIA0KICAgIHVubGlzdCgpICU+JSANCiAgICB0aWJibGUoY2hhciA9IC4pDQp9DQpgYGANCg0KYGBge3J9DQpzdHJfdG9fdGliYmxlKGhlZF9kZiRzZWcxWzFdKQ0KYGBgDQoNCg==</div>
 
 
 
