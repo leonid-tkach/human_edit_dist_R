@@ -1789,38 +1789,110 @@ str_to_tibble &lt;- function(str) {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX3RvX2FycmF5KGhlZF9kZiRzZWcxWzFdKVxuXG5gYGAifQ== -->
-<pre class="r"><code>str_to_array(hed_df$seg1[1])
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBmdW5jdGlvbiBzcGxpdHRpbmcgc3RyaW5nIHVzaW5nIHRoaXMgcmVnZXg6IFwiKFteXFxkXFxXXStcXHMqfFxcZCtcXHMqfFteXFx3XFxzXStcXHMqKVwiIGFuZCByZXR1cm5pbmcgYXJyYXlcbnN0cl90b19hcnJheSA8LSBmdW5jdGlvbihzdHIpIHtcbiAgc3RyX2V4dHJhY3RfYWxsKHN0ciwgXCJbXlxcXFxkXFxcXFddK1xcXFxzKnxcXFxcZCtcXFxccyp8W15cXFxcd1xcXFxzXStcXFxccypcIikgJT4lIFxuICAgIHVubGlzdCgpXG59XG5gYGAifQ== -->
+<pre class="r"><code># function splitting string using this regex: &quot;([^\d\W]+\s*|\d+\s*|[^\w\s]+\s*)&quot; and returning array
+str_to_array &lt;- function(str) {
+  str_extract_all(str, &quot;[^\\d\\W]+\\s*|\\d+\\s*|[^\\w\\s]+\\s*&quot;) %&gt;% 
+    unlist()
+}</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibm9wcSBcIiAgXCJmZ2hhYiBcIiBcImNkaWprIFwiIFwiZWRsbW4gXCIgXCJyc3RcIiAgIFxuIn0= -->
-<pre><code>[1] &quot;nopq &quot;  &quot;fghab &quot; &quot;cdijk &quot; &quot;edlmn &quot; &quot;rst&quot;   </code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyX3RvX2FycmF5KGhlZF9kZiRzZWcxWzFdKVxuYGBgIn0= -->
+<pre class="r"><code>str_to_array(hed_df$seg1[1])</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9uZ2VzdF9jb21tb25fc3Vic2VxdWVuY2Uoc3RyX3RvX3RpYmJsZShoZWRfZGYkc2VnMVsxXSkkY2hhciwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJfdG9fdGliYmxlKGhlZF9kZiRzZWcyWzFdKSRjaGFyKVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9uZ2VzdF9jb21tb25fc3Vic2VxdWVuY2UgPC0gZnVuY3Rpb24obHN0MSwgbHN0Mikge1xuICBtIDwtIGxlbmd0aChsc3QxKVxuICBuIDwtIGxlbmd0aChsc3QyKVxuICBqaCA8LSBtYXRyaXgoMCwgbnJvdyA9IG0gKyAxLCBuY29sID0gbiArIDEpXG4gIFxuICBmb3IgKGkgaW4gMTptKSB7XG4gICAgZm9yIChqIGluIDE6bikge1xuICAgICAgaWYgKGxzdDFbaV0gPT0gbHN0MltqXSkge1xuICAgICAgICBqaFtpKzEsaisxXSA8LSAxICsgamhbaSxqXVxuICAgICAgfSBlbHNlIHtcbiAgICAgICAgamhbaSsxLGorMV0gPC0gbWF4KGpoW2ksaisxXSwgamhbaSsxLGpdKVxuICAgICAgfVxuICAgIH1cbiAgfVxuICBcbiAgcmVzdWx0IDwtIGMoKVxuICBpIDwtIG1cbiAgaiA8LSBuXG4gIHdoaWxlIChpID4gMCAmJiBqID4gMCkge1xuICAgIGlmIChsc3QxW2ldID09IGxzdDJbal0pIHtcbiAgICAgIHJlc3VsdCA8LSBjKHJlc3VsdCwgbHN0MVtpXSlcbiAgICAgIGkgPC0gaSAtIDFcbiAgICAgIGogPC0gaiAtIDFcbiAgICB9IGVsc2UgaWYgKGpoW2ksaisxXSA+IGpoW2krMSxqXSkge1xuICAgICAgaSA8LSBpIC0gMVxuICAgIH0gZWxzZSB7XG4gICAgICBqIDwtIGogLSAxXG4gICAgfVxuICB9XG4gIFxuICByZXR1cm4ocmV2KHJlc3VsdCkpXG59XG5gYGAifQ== -->
+<pre class="r"><code>longest_common_subsequence &lt;- function(lst1, lst2) {
+  m &lt;- length(lst1)
+  n &lt;- length(lst2)
+  jh &lt;- matrix(0, nrow = m + 1, ncol = n + 1)
+  
+  for (i in 1:m) {
+    for (j in 1:n) {
+      if (lst1[i] == lst2[j]) {
+        jh[i+1,j+1] &lt;- 1 + jh[i,j]
+      } else {
+        jh[i+1,j+1] &lt;- max(jh[i,j+1], jh[i+1,j])
+      }
+    }
+  }
+  
+  result &lt;- c()
+  i &lt;- m
+  j &lt;- n
+  while (i &gt; 0 &amp;&amp; j &gt; 0) {
+    if (lst1[i] == lst2[j]) {
+      result &lt;- c(result, lst1[i])
+      i &lt;- i - 1
+      j &lt;- j - 1
+    } else if (jh[i,j+1] &gt; jh[i+1,j]) {
+      i &lt;- i - 1
+    } else {
+      j &lt;- j - 1
+    }
+  }
+  
+  return(rev(result))
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsX2NvbW1vbl9zdWJzZXF1ZW5jZXMgPC0gZnVuY3Rpb24obHN0MSwgbHN0Mikge1xuICBtIDwtIGxlbmd0aChsc3QxKVxuICBuIDwtIGxlbmd0aChsc3QyKVxuICBqaCA8LSBtYXRyaXgoMCwgbnJvdyA9IG0gKyAxLCBuY29sID0gbiArIDEpXG4gIHJlc3VsdCA8LSBjKClcbiAgY3VyX3NlcSA8LSBjKClcbiAgXG4gIGZvciAoaSBpbiAxOm0pIHtcbiAgICBmb3IgKGogaW4gMTpuKSB7XG4gICAgICBpZiAobHN0MVtpXSA9PSBsc3QyW2pdKSB7XG4gICAgICAgIGpoW2krMSxqKzFdIDwtIDEgKyBqaFtpLGpdXG4gICAgICB9IGVsc2Uge1xuICAgICAgICBqaFtpKzEsaisxXSA8LSBtYXgoamhbaSxqKzFdLCBqaFtpKzEsal0pXG4gICAgICB9XG4gICAgfVxuICB9XG4gIFxuICBpIDwtIG1cbiAgaiA8LSBuXG4gIHdoaWxlIChpID4gMCAmJiBqID4gMCkge1xuICAgIGlmIChsc3QxW2ldID09IGxzdDJbal0pIHtcbiAgICAgIHJlc3VsdCA8LSBjKHJlc3VsdCwgbHN0MVtpXSlcbiAgICAgIGkgPC0gaSAtIDFcbiAgICAgIGogPC0gaiAtIDFcbiAgICB9IGVsc2UgaWYgKGpoW2ksaisxXSA+IGpoW2krMSxqXSkge1xuICAgICAgaSA8LSBpIC0gMVxuICAgIH0gZWxzZSB7XG4gICAgICBqIDwtIGogLSAxXG4gICAgfVxuICB9XG4gIFxuICByZXR1cm4ocmV2KHJlc3VsdCkpXG59XG5gYGAifQ== -->
+<pre class="r"><code>all_common_subsequences &lt;- function(lst1, lst2) {
+  m &lt;- length(lst1)
+  n &lt;- length(lst2)
+  jh &lt;- matrix(0, nrow = m + 1, ncol = n + 1)
+  result &lt;- c()
+  cur_seq &lt;- c()
+  
+  for (i in 1:m) {
+    for (j in 1:n) {
+      if (lst1[i] == lst2[j]) {
+        jh[i+1,j+1] &lt;- 1 + jh[i,j]
+      } else {
+        jh[i+1,j+1] &lt;- max(jh[i,j+1], jh[i+1,j])
+      }
+    }
+  }
+  
+  i &lt;- m
+  j &lt;- n
+  while (i &gt; 0 &amp;&amp; j &gt; 0) {
+    if (lst1[i] == lst2[j]) {
+      result &lt;- c(result, lst1[i])
+      i &lt;- i - 1
+      j &lt;- j - 1
+    } else if (jh[i,j+1] &gt; jh[i+1,j]) {
+      i &lt;- i - 1
+    } else {
+      j &lt;- j - 1
+    }
+  }
+  
+  return(rev(result))
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9uZ2VzdF9jb21tb25fc3Vic2VxdWVuY2Uoc3RyX3RvX3RpYmJsZShoZWRfZGYkc2VnMVsxXSkkY2hhciwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJfdG9fdGliYmxlKGhlZF9kZiRzZWcyWzFdKSRjaGFyKVxuYGBgIn0= -->
 <pre class="r"><code>longest_common_subsequence(str_to_tibble(hed_df$seg1[1])$char, 
-                           str_to_tibble(hed_df$seg2[1])$char)
-</code></pre>
+                           str_to_tibble(hed_df$seg2[1])$char)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcInFcIiBcIiBcIiBcImZcIiBcImdcIiBcImhcIiBcIiBcIiBcImRcIiBcImlcIiBcImpcIiBcImtcIiBcIiBcIiBcImxcIiBcIm1cIiBcIm5cIiBcIiBcIiBcInRcIlxuIn0= -->
-<pre><code> [1] &quot;q&quot; &quot; &quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot; &quot; &quot;d&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot; &quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot; &quot; &quot;t&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkhFRCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpgYGANCg0KYGBge3J9DQojIHJlYWQgY3N2IGZpbGUgdG8gdGliYmxlDQpoZWRfZGYgPC0gcmVhZF9jc3YoImh1bWFuLWVkaXQtZGlzdC5jc3YiKQ0KaGVkX2RmDQpgYGANCg0KYGBge3J9DQojIHN0cmluZyB0byB0aWJibGUgd2l0aCBhIGNvbHVtbiBvZiBjaGFyYWN0ZXJzDQpzdHJfdG9fdGliYmxlIDwtIGZ1bmN0aW9uKHN0cikgew0KICBzdHJfc3BsaXQoc3RyLCAiIikgJT4lIA0KICAgIHVubGlzdCgpICU+JSANCiAgICB0aWJibGUoY2hhciA9IC4pDQp9DQpgYGANCg0KYGBge3J9DQpzdHJfdG9fdGliYmxlKGhlZF9kZiRzZWcxWzFdKQ0KYGBgDQoNCmBgYHtyfQ0KIyBmdW5jdGlvbiBzcGxpdHRpbmcgc3RyaW5nIHVzaW5nIHRoaXMgcmVnZXg6ICIoW15cZFxXXStccyp8XGQrXHMqfFteXHdcc10rXHMqKSIgYW5kIHJldHVybmluZyBhcnJheQ0Kc3RyX3RvX2FycmF5IDwtIGZ1bmN0aW9uKHN0cikgew0KICBzdHJfZXh0cmFjdF9hbGwoc3RyLCAiW15cXGRcXFddK1xccyp8XFxkK1xccyp8W15cXHdcXHNdK1xccyoiKSAlPiUgDQogICAgdW5saXN0KCkNCn0NCmBgYA0KDQpgYGB7cn0NCnN0cl90b19hcnJheShoZWRfZGYkc2VnMVsxXSkNCmBgYA0KDQpgYGB7cn0NCmxvbmdlc3RfY29tbW9uX3N1YnNlcXVlbmNlIDwtIGZ1bmN0aW9uKGxzdDEsIGxzdDIpIHsNCiAgICBtIDwtIGxlbmd0aChsc3QxKQ0KICAgIG4gPC0gbGVuZ3RoKGxzdDIpDQogICAgamggPC0gbWF0cml4KDAsIG5yb3cgPSBtICsgMSwgbmNvbCA9IG4gKyAxKQ0KICAgIA0KICAgIGZvciAoaSBpbiAxOm0pIHsNCiAgICAgICAgZm9yIChqIGluIDE6bikgew0KICAgICAgICAgICAgaWYgKGxzdDFbaV0gPT0gbHN0MltqXSkgew0KICAgICAgICAgICAgICAgIGpoW2krMSxqKzFdIDwtIDEgKyBqaFtpLGpdDQogICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgIGpoW2krMSxqKzFdIDwtIG1heChqaFtpLGorMV0sIGpoW2krMSxqXSkNCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KICAgIH0NCiAgICANCiAgICByZXN1bHQgPC0gYygpDQogICAgaSA8LSBtDQogICAgaiA8LSBuDQogICAgd2hpbGUgKGkgPiAwICYmIGogPiAwKSB7DQogICAgICAgIGlmIChsc3QxW2ldID09IGxzdDJbal0pIHsNCiAgICAgICAgICAgIHJlc3VsdCA8LSBjKHJlc3VsdCwgbHN0MVtpXSkNCiAgICAgICAgICAgIGkgPC0gaSAtIDENCiAgICAgICAgICAgIGogPC0gaiAtIDENCiAgICAgICAgfSBlbHNlIGlmIChqaFtpLGorMV0gPiBqaFtpKzEsal0pIHsNCiAgICAgICAgICAgIGkgPC0gaSAtIDENCiAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgIGogPC0gaiAtIDENCiAgICAgICAgfQ0KICAgIH0NCiAgICANCiAgICByZXR1cm4ocmV2KHJlc3VsdCkpDQp9DQpgYGANCg0KYGBge3J9DQpsb25nZXN0X2NvbW1vbl9zdWJzZXF1ZW5jZShzdHJfdG9fdGliYmxlKGhlZF9kZiRzZWcxWzFdKSRjaGFyLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cl90b190aWJibGUoaGVkX2RmJHNlZzJbMV0pJGNoYXIpDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkhFRCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpgYGANCg0KYGBge3J9DQojIHJlYWQgY3N2IGZpbGUgdG8gdGliYmxlDQpoZWRfZGYgPC0gcmVhZF9jc3YoImh1bWFuLWVkaXQtZGlzdC5jc3YiKQ0KaGVkX2RmDQpgYGANCg0KYGBge3J9DQojIHN0cmluZyB0byB0aWJibGUgd2l0aCBhIGNvbHVtbiBvZiBjaGFyYWN0ZXJzDQpzdHJfdG9fdGliYmxlIDwtIGZ1bmN0aW9uKHN0cikgew0KICBzdHJfc3BsaXQoc3RyLCAiIikgJT4lIA0KICAgIHVubGlzdCgpICU+JSANCiAgICB0aWJibGUoY2hhciA9IC4pDQp9DQpgYGANCg0KYGBge3J9DQpzdHJfdG9fdGliYmxlKGhlZF9kZiRzZWcxWzFdKQ0KYGBgDQoNCmBgYHtyfQ0KIyBmdW5jdGlvbiBzcGxpdHRpbmcgc3RyaW5nIHVzaW5nIHRoaXMgcmVnZXg6ICIoW15cZFxXXStccyp8XGQrXHMqfFteXHdcc10rXHMqKSIgYW5kIHJldHVybmluZyBhcnJheQ0Kc3RyX3RvX2FycmF5IDwtIGZ1bmN0aW9uKHN0cikgew0KICBzdHJfZXh0cmFjdF9hbGwoc3RyLCAiW15cXGRcXFddK1xccyp8XFxkK1xccyp8W15cXHdcXHNdK1xccyoiKSAlPiUgDQogICAgdW5saXN0KCkNCn0NCmBgYA0KDQpgYGB7cn0NCnN0cl90b19hcnJheShoZWRfZGYkc2VnMVsxXSkNCmBgYA0KDQpgYGB7cn0NCmxvbmdlc3RfY29tbW9uX3N1YnNlcXVlbmNlIDwtIGZ1bmN0aW9uKGxzdDEsIGxzdDIpIHsNCiAgbSA8LSBsZW5ndGgobHN0MSkNCiAgbiA8LSBsZW5ndGgobHN0MikNCiAgamggPC0gbWF0cml4KDAsIG5yb3cgPSBtICsgMSwgbmNvbCA9IG4gKyAxKQ0KICANCiAgZm9yIChpIGluIDE6bSkgew0KICAgIGZvciAoaiBpbiAxOm4pIHsNCiAgICAgIGlmIChsc3QxW2ldID09IGxzdDJbal0pIHsNCiAgICAgICAgamhbaSsxLGorMV0gPC0gMSArIGpoW2ksal0NCiAgICAgIH0gZWxzZSB7DQogICAgICAgIGpoW2krMSxqKzFdIDwtIG1heChqaFtpLGorMV0sIGpoW2krMSxqXSkNCiAgICAgIH0NCiAgICB9DQogIH0NCiAgDQogIHJlc3VsdCA8LSBjKCkNCiAgaSA8LSBtDQogIGogPC0gbg0KICB3aGlsZSAoaSA+IDAgJiYgaiA+IDApIHsNCiAgICBpZiAobHN0MVtpXSA9PSBsc3QyW2pdKSB7DQogICAgICByZXN1bHQgPC0gYyhyZXN1bHQsIGxzdDFbaV0pDQogICAgICBpIDwtIGkgLSAxDQogICAgICBqIDwtIGogLSAxDQogICAgfSBlbHNlIGlmIChqaFtpLGorMV0gPiBqaFtpKzEsal0pIHsNCiAgICAgIGkgPC0gaSAtIDENCiAgICB9IGVsc2Ugew0KICAgICAgaiA8LSBqIC0gMQ0KICAgIH0NCiAgfQ0KICANCiAgcmV0dXJuKHJldihyZXN1bHQpKQ0KfQ0KYGBgDQoNCg0KYGBge3J9DQphbGxfY29tbW9uX3N1YnNlcXVlbmNlcyA8LSBmdW5jdGlvbihsc3QxLCBsc3QyKSB7DQogIG0gPC0gbGVuZ3RoKGxzdDEpDQogIG4gPC0gbGVuZ3RoKGxzdDIpDQogIGpoIDwtIG1hdHJpeCgwLCBucm93ID0gbSArIDEsIG5jb2wgPSBuICsgMSkNCiAgcmVzdWx0IDwtIGMoKQ0KICBjdXJfc2VxIDwtIGMoKQ0KICANCiAgZm9yIChpIGluIDE6bSkgew0KICAgIGZvciAoaiBpbiAxOm4pIHsNCiAgICAgIGlmIChsc3QxW2ldID09IGxzdDJbal0pIHsNCiAgICAgICAgamhbaSsxLGorMV0gPC0gMSArIGpoW2ksal0NCiAgICAgIH0gZWxzZSB7DQogICAgICAgIGpoW2krMSxqKzFdIDwtIG1heChqaFtpLGorMV0sIGpoW2krMSxqXSkNCiAgICAgIH0NCiAgICB9DQogIH0NCiAgDQogIGkgPC0gbQ0KICBqIDwtIG4NCiAgd2hpbGUgKGkgPiAwICYmIGogPiAwKSB7DQogICAgaWYgKGxzdDFbaV0gPT0gbHN0MltqXSkgew0KICAgICAgcmVzdWx0IDwtIGMocmVzdWx0LCBsc3QxW2ldKQ0KICAgICAgaSA8LSBpIC0gMQ0KICAgICAgaiA8LSBqIC0gMQ0KICAgIH0gZWxzZSBpZiAoamhbaSxqKzFdID4gamhbaSsxLGpdKSB7DQogICAgICBpIDwtIGkgLSAxDQogICAgfSBlbHNlIHsNCiAgICAgIGogPC0gaiAtIDENCiAgICB9DQogIH0NCiAgDQogIHJldHVybihyZXYocmVzdWx0KSkNCn0NCmBgYA0KDQpgYGB7cn0NCmxvbmdlc3RfY29tbW9uX3N1YnNlcXVlbmNlKHN0cl90b190aWJibGUoaGVkX2RmJHNlZzFbMV0pJGNoYXIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RyX3RvX3RpYmJsZShoZWRfZGYkc2VnMlsxXSkkY2hhcikNCmBgYA0KDQo=</div>
 
 
 
